@@ -1,0 +1,27 @@
+<div id="project" class="bg clearfix">
+
+ <div class="backl">
+   <%= link_to "BACK TO INBOX",:controller=>'conversations/index'  %>
+ </div>
+ 
+</div>
+
+<div class="container">
+
+	<div id="index" class="msgco bg">
+	  <%= form_for(:message, :url=>{:controller=>'messages/create',:conversation_id => @conversation.id}) do |f| %>
+		  <div class="group">
+		     <%= f.text_area(:body)%>
+		     <span class="highlight"></span>
+		     <span class="bar"></span>
+		     <%= f.label(:body) %>
+		  </div>
+		  <div class="button buttonBlue">
+		      <%= submit_tag("Send",:class=>'button') %>
+		   </div>
+	  
+	  <% end %>
+	</div>
+</div>
+
+

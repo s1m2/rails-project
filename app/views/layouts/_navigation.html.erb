@@ -1,0 +1,10 @@
+<ul>
+ <li><%= link_to("Dashboard",{:controller=>'home/index'})%></li>
+ <li><%= link_to("Projects",{:controller=>'projects/index'})%></li>
+ <li><%= link_to("Notifications",{:controller=>'notifications/index'})%> </li>
+ <li><%= link_to("Project Progress",{:controller=>'progress/index'})%></li>
+ <li><%= link_to("Conversations",{:controller=>'conversations/index'})%></li>
+ <li><%= link_to("Users",{:controller=>'users/index'})%></li>
+ <li><%= link_to("Edit Details",{:controller=>'users/edit',:user_id=>current_user.id})%></li>
+</ul>
+ 

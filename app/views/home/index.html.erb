@@ -1,0 +1,73 @@
+<div id="project" class="bg">
+   <div id="name">Current Project: <%=@project.project_name%></div>
+</div>
+<div class="container">
+ <div class="members bg side">
+     <p>Members</p>
+     <% @users.each do |user| %>
+	 <div class="user pad">
+		 <div class="name"><%=user.first_name%> <%= user.lastname%></div>
+	     <div class="department"><%=user.department%></div>
+	 </div>
+	 <%end%>		
+  </div>
+
+	<div class="activities bg side">
+		<div class="activity">
+		 <% if @projectactivity.present?%>
+			    <p> Last Task assigned </p>
+				<div class="task">Task: <span><%=@projectactivity.task%></span></div>
+				<div class="task">Activity: <span><%=@projectactivity.activity%></span></div>
+				<% assignee = User.find(@projectactivity.assignee_id)%>
+				<div class="task">Assignee: <span><%=assignee.first_name%> <%= assignee.lastname%></span></div>
+				<div class="task">Date Assigned: <span><%=@projectactivity.created_at.strftime("%m/%d/%y")%></span></div>
+				<% if @projectactivity.completed == 1 %>
+				   <div class="task">Status: <span> Completed</span></div>
+				<% else %>
+	              <div class="task">Status: <span> Not Completed</span></div>
+	            <%end%> 
+	      <%else%>
+	         <%= "No Task Assigned Yet"%> 
+	      <%end%> 
+		</div>
+	</div>
+
+</div>
+
+<div class="container">
+  <div class="userdetails bg side"> 
+		 <%user = User.find(current_user.id) %>
+		 <p>My Details</p>
+		 <div class="user-detail">Name: <span><%= user.first_name %> <%= user.lastname %></span></div>
+		 <div class="user-detail">Email: <span><%= user.email%></span></div>
+		 <div class="user-detail">Department: <span><%= user.department %></span></div>
+		 <div class="user-detail">Role: <span><%= user.role %></span></div>
+		 <div class="user-detail">Username: <span><%= user.username %></span> </div>
+		 <div class="user-detail">Date Joined: <span><%= user.created_at.strftime("%m/%d/%y at %H:%M") %></span></div>
+	</div>
+
+	<div class="lastproject bg side">
+	  <p>Current Project Overview</p>
+	  <div class="det">Project Name: <span><%=@project.project_name%></span></div>
+	  <div class="det">Start Date: <span><%=@project.start_date %></span></div>
+	  <div class="det">End Date: <span><%=@project.end_date %></span></div>
+	  <div class="det">Activities: <span><%=@project.project_activities.where("asignor_id=?",current_user.id).count %></span></div>
+	  <div class="det">No of Activities Completed:<span><%=@project.project_activities.where("completed=?",1).count %></span></div>
+	  <div class="det">No of Users Involved:<span><%=@project.project_activities.where("assignee_id").count %></span></div>
+	</div>
+
+	<div class="overview bg side">
+		 <p>Overview</p>
+		 <div class="det1">No of Projects Created: <span><%= @project=Project.where("creator=?",current_user.id).count%></span></div>
+		 <div class="det1">No of Messages Sent:<span><%= @conversations=Conversation.where("sender_id=?",current_user.id).count%></span></div>
+		 <div class="det1">No of Users in the system:<span><%= @users=User.count - 1%></span></div>
+	</div>
+
+	<div class="day bg side">
+		<div id="time"><%=Time.now.strftime( "%I:%M %p") %></div>
+		<div id="day"><%=DateTime.now.strftime( "%B %e, %Y")%></div>
+	</div>
+		
+</div>
+
+	

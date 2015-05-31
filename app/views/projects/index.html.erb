@@ -1,0 +1,33 @@
+<div id="project" class="bg">
+   <div id="pname">PROJECTS</div>
+   <div id="link"><%= link_to("CREATE NEW PROJECT",{:action=>'new'}) %></div>
+</div>
+
+<div class="container">
+  <div class="projects">
+
+       <% if @projects.present? %>
+         <% @projects.each do |project| %>
+         <div class="project-details bg side">
+             <div class="pdet">Project Name: <span><%=project.project_name%></span></div>
+             <div class="pdet">Proposed Start Date: <span><%=project.start_date%></span></div>
+             <div class="pdet">Proposed End Date: <span><%=project.end_date%></span></div>
+             <div class="links">
+                 <div id="link1" class="side">
+                     <%= link_to("Delete",{:action=>'delete',:id=>project.id})%> 
+                 </div>
+
+                 <div id="link2" class="side">
+                     <%= link_to("Edit Details",{:action=>'edit',:id=>project.id})%>
+                     <%= link_to("Show Details",{:action=>'show',:project_id=>project.id})%>
+                 </div>                                
+             </div>
+             
+         </div>
+         <% end %>
+         <% else %>
+             <p> There are no new projects </p>
+         <% end %>
+ </div>
+    
+</div>

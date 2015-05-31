@@ -1,0 +1,25 @@
+<div id="project" class="bg">
+ <div id="pname">PROJECTS PROGRESS</div>
+ <div id="link"><%="Select A Project to View Progress"%></div>
+</div>
+<div class="container">
+ <div class="projects">
+   <% if @projects.present? %>
+     <% @projects.each do |project|%>
+       <div id="project-pro" class="bg side">
+         <div class="pdet">Project Name: <span><%=project.project_name%></span></div>
+         <div class="pdet">Description: <span><%=truncate(project.description,:length=>20,:omission=>"...") %></span></div>
+         <div id="link">
+           <%=link_to "MORE DETAILS",:action=>'show',:id=>project.id %>
+         </div>
+           	 
+       </div>
+
+     <%end%>
+
+   <%else%>
+     <%= "There are no projects created" %>
+   <%end%>	
+ </div> 
+	
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Workflo Secure | Dashboard</title>
+		<%= stylesheet_link_tag('application', :media =>'all') %>
+		<%= javascript_include_tag "application" %>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500|Roboto+Condensed:400,700|Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	</head>
+	<body class="menu">
+	 <div class="sidenav hide">
+	 
+		 <div id="sideheader">
+		    	<h2>Workflo</h2>
+		  </div>
+          
+		  <nav>
+		       <ul>
+				 <li><%= link_to("Dashboard",{:controller=>'admin/index'})%></li>
+				 <li><%= link_to("Create User",{:controller=>'admin/create'})%></li>
+				 <li><%= link_to("Conversations",{:controller=>'conversations/index'})%></li>
+				 <li><%= link_to("Users",{:controller=>'admin/users'})%></li>
+				 <li><%= link_to("Edit Details",{:controller=>'users/edit',:user_id=>current_user.id})%></li>
+			  </ul>
+		  </nav>
+
+		  <div id="copyright">
+	 	     <p>workflo &#169; 2015</p>
+	      </div> 	
+	 </div>
+
+	 <header id="dashhead" class="clearfix">
+	
+	     <div id="name" class="headeritems">
+	         <p> <%=@page_title || "Dashboard" %></p>	             	  
+	      </div>
+
+	       <div id="sign-in" class="headeritems">
+	 	 	 <p>Signed in as <span><%= session[:username] %></span></p>
+	 	 </div>
+	           
+		 <div id="logout" class="headeritems">
+			 <%= link_to("Logout",{:controller=>'access/logout'})%>
+	     </div>
+	 </header>
+
+
+	 <section id="dashsection">       
+	      <%= yield %> 
+	 </section>
+
+ </body>
+</html>

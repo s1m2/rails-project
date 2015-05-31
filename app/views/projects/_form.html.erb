@@ -1,0 +1,26 @@
+<%= error_messages_for(@project) %>
+<div class="form" >
+ <div class="group">
+   <%= f.text_field :project_name %>
+   <span class="highlight"></span>
+   <span class="bar"></span>
+   <%= f.label :project_name, "Project Name" %>
+ </div>
+
+ <div class="group">
+   <%= f.date_select :start_date%>
+   <%= f.label :start_date, "Proposed Start Date" %>
+ </div>
+
+ <div class="group">
+   <%= f.date_select :end_date%>
+   <%= f.label :end_date, "Proposed End Date" %>
+ </div>
+
+ <div class="group">
+   <%= f.text_area :description %>
+   <span class="highlight"></span>
+   <span class="bar"></span>
+   <%= f.label :description, "Project Description" %>
+ </div>
+</div>

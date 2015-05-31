@@ -1,0 +1,14 @@
+<div class="createproject bg" id="proactivities">
+  <div class="header-form">
+ 	 <p>Assign Task</p>
+  </div>
+  <%=form_for(:project_activity,:url=>{:action=>'save',:project_id=>@project.id}) do |f| %>
+
+      <%=render(:partial=>'form',:locals=>{:f=>f}) %>
+
+      <div class="button buttonBlue">
+          <%= submit_tag("Assign",:class=>'button')%>
+      </div>
+  <% end %>
+
+</div>

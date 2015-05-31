@@ -1,0 +1,18 @@
+
+<div id="project" class="bg">
+ <div id="pname">CREATE USERS PAGE</div>
+</div>
+
+<div class="container">
+    <%= error_messages_for(@user) %>
+    <div class="editdet bg">
+		<div class="signup">
+		 <%= form_for(:user, :url => {:action =>'save'}) do |f| %>
+		   <%= render(:partial => 'access/form', :locals => {:f => f}) %>     
+		   <div class="button buttonBlue sign">
+		     <%= submit_tag('Sign Up',:class=>'button ') %>
+		   </div>
+		 <% end %>
+	   </div>
+	</div>
+</div>

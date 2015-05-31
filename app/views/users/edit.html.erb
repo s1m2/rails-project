@@ -1,0 +1,61 @@
+<div id="project" class="bg">
+ <div id="pname">EDIT DETAILS PAGE</div>
+</div>
+
+<div class="container">
+    
+ <%= error_messages_for(@user) %>
+ <div class="editdet bg">
+  
+   <%= form_for(:user, :url => {:action =>'update',:user_id=>current_user.id}) do |f| %>
+     <div id="index">
+       <div class="group">
+         <%= f.text_field(:first_name)%>
+         <span class="highlight"></span>
+         <span class="bar"></span>
+         <%= f.label(:first_name) %>
+       </div>
+       <div class="group">
+         <%= f.text_field(:lastname)%> 
+         <span class="highlight"></span>
+         <span class="bar"></span>
+         <%= f.label(:last_name)%> 
+       </div>
+       <div class="group">
+         <%= f.email_field(:email)%>
+         <span class="highlight"></span>
+         <span class="bar"></span>
+         <%= f.label(:email)%>
+       </div>
+       <div class="group">
+         <%= f.text_field(:department)%> 
+         <span class="highlight"></span>
+         <span class="bar"></span>
+         <%= f.label(:department)%>
+       </div>
+       <div class="group">
+         <%= f.text_field(:role)%> 
+         <span class="highlight"></span>
+         <span class="bar"></span>
+         <%= f.label(:role)%>
+       </div>
+       <div class="group">
+         <%= f.text_field(:username)%>
+         <span class="highlight"></span>
+         <span class="bar"></span>
+         <%= f.label(:username)%>              
+       </div>
+       <div class="group">
+         <%= f.password_field(:password)%>
+         <span class="highlight"></span>
+         <span class="bar"></span>
+         <%= f.label(:password)%>
+       </div>
+
+       <div class="button buttonBlue">
+         <%= submit_tag('Update',:class=>'button') %>
+       </div>
+     </div>
+   <% end %>
+ </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="delete bg">
+    <p>Are You Sure You Want to delete?</p>
+
+    <div class="dname">
+    	<%=@project_activity.task%>
+    	From
+    	<%=@project.project_name %>
+    </div>
+    <div class="linkz">
+       <%=link_to("CANCEL",{:controller=>'projects/show',:project_id=>@project.id})%>
+       <%=link_to("DELETE",{:action=>'destroy',:projectactivity_id=>@project_activity.id,:project_id=>@project.id}) %>
+    </div>
+        
+</div>

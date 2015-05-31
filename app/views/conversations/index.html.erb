@@ -1,0 +1,59 @@
+<div id="project" class="bg">
+ <div id="pname">WELCOME TO INBOX</div>
+ <div id="link"><%="Send Messages To Your Fellow Members"%></div>
+</div>
+<div class="container">
+  
+ <div class="convos bg clearfix side">
+   <div id="chat" class="head">
+     <p>CHATS</p>
+   </div>
+   <% if @conversations.present? %>
+     <% @conversations.each do |conversation| %>
+       <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+         <% if conversation.sender_id == current_user.id %>
+           <% recipient = User.find(conversation.recipient_id) %>
+         <% else %>
+           <% recipient = User.find(conversation.sender_id) %>
+         <% end %>
+         <div class="messages clearfix">
+           <div class="image side">
+             <div class="img"></div>
+           </div>
+           <div class="lastmessage side">
+             <div class="re"><%= link_to(recipient.first_name, :controller=>'messages/index',:conversation_id=>conversation.id) %></div>
+             <% msg = Message.where(:conversation_id=>conversation.id).last%>
+             <div class="msg"><%= msg.body%></div>
+             <div class="time"><%= msg.updated_at.strftime("%H:%M %p") %></div>
+           </div>   
+         </div>   
+       <% end %>
+     <% end %>
+   <%else%>
+     <div class="messages">
+       <%="<p>You do not have</p>"%>
+     </div>
+   <%end%>
+ </div>
+
+ <div class="new bg side">
+   <div id="newchat" class="head">
+      <p>MEMBERS</p>
+   </div>
+   <% @users.each do |user| %>
+     <% if user.id != current_user.id %>
+       <div class="messages clearfix">
+         <div class="image side">
+             <div class="img"></div>
+         </div>
+         <div class="lastmessage side">
+           <div class="re"><%= link_to("#{user.first_name} #{user.lastname}",{:action=>'create',sender_id: current_user.id, recipient_id: user.id})%></div>
+           <div class="msg"><%=user.department %></div>
+         </div>
+       </div>
+     <% end %>
+   <% end %>
+ </div>
+</div>
+
+</div>

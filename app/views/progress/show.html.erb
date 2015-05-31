@@ -1,0 +1,91 @@
+<div id="project-progress" class="pactivities bg progress-pg">
+  <%=link_to "BACK TO PROJECTS",:action=>'index' %>
+</div>
+
+<div class="container">
+  
+ <div id="prog-det" class="pactivities bg">
+    <div class="head">
+      <p>Project Overview</p>
+   </div>
+    <div class="pdet">Project Name <span><%=@project.project_name %></span></div>
+    <div class="pdet">Proposed Start Date <span><%=@project.start_date %></span></div>
+    <div class="pdet">Project End Date <span><%=@project.end_date %></span></div>
+    <div class="pcontents">
+     <p>Project Description</p>
+     <div><%=@project.description %></div>
+   </div>
+ </div>
+
+ <div id="user-det" class="pactivities bg">
+  <div class="head">
+      <p>Project Members</p>
+   </div>
+   <div class="pro">
+     
+     <% assignor = User.find(@project.creator)%>
+     <div class="pdet">
+      Project Leader <span><%=assignor.first_name%> <%=assignor.lastname%></span>
+     </div>
+     <p>Users Invoved in The Project</p>
+     <div class="users">
+       <% @projectactivities.each do |projectactivity| %>
+       <div class="user">
+         <% assignee = User.find(projectactivity.assignee_id)%>
+         <div class="name"><%=assignee.first_name%> <%= assignee.lastname%></div>
+         <div class="department"><%=assignee.department%></div>
+       </div>      
+       <%end%>
+     </div> 
+   </div> 
+ </div>
+
+ <div class="pactivities bg">
+   <div class="head">
+      <p>Project Stats</p>
+   </div>
+   <div class="pdet">No of Days Since Project Start: <span><%=( DateTime.now - @project.start_date).to_i%></span> </div>
+   <div class="pdet">No of Days Left: <span><%=( @project.end_date - DateTime.now).to_i%></span></div>
+   <div class="pdet">No of tasks involved: <span><%=@projectactivities.count('completed')%></span></div>
+   <div class="progress">
+     <p>Project Status</p>
+     <progress value="<%=@projectactivities.where(:completed=>1).count%>" max="<%=@projectactivities.count('completed')%>"></progress><%=@projectactivities.where(:completed=>1).count * 100 %></div>
+ </div>
+
+ <div class="pactivities bg">
+   <div class="head">
+      <p>Activities in The Project</p>
+   </div>
+   <div class="content">
+     <% if @projectactivities.present? %>
+     <% @projectactivities.each do |projectactivity| %>
+     <div class="pactivity">
+       <div class="pcontents">
+         <p>Task Name</p>
+         <div><%=projectactivity.task %></div>
+       </div>
+       <div class="pcontents">
+         <p>Activity</p>
+         <div><%=projectactivity.activity %></div>
+       </div>
+       <% assignee = User.find(projectactivity.assignee_id)%>
+       <div class="pcontents">
+         <p>Assignee</p>
+         <div><%=assignee.first_name%> <%= assignee.lastname%></div>
+       </div>
+       <%if projectactivity.completed == 0 %>
+         <div class="status">Status: Not Completed</div>
+         <progress value="0" max="100"></progress>
+       <%else%>
+         <div class="status">Status: Completed</div>
+         <progress value="100" max="100"></progress>
+       <%end%>
+     </div>
+        
+     <%end %>
+     <% else %>
+       <p> There are no new tasks in this project </p>
+     <%end%>
+   </div>
+ </div>   
+</div>

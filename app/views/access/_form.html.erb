@@ -1,0 +1,60 @@
+<div id="index sign">
+  <div class="group"> 
+      <%= f.text_field(:first_name)%>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <%= f.label(:first_name) %>
+  </div>
+
+  <div class="group">
+      <%= f.text_field(:lastname)%>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <%= f.label(:last_name)%>
+  </div>
+
+  <div class="group">
+      <%= f.email_field(:email)%>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <%= f.label(:email)%>
+  </div>
+
+  <div class="group">
+      <%= f.text_field(:department)%>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <%= f.label(:department)%>
+  </div>
+  <div class="group">
+     <p>Kindly select one:</p>
+  </div>
+
+  <div class="group">
+     <div class="radiobtn">
+       <%= f.label(:role,"Project Leader")%>
+       <%= f.radio_button(:role, "Project Leader")%>
+     </div>
+     <div class="radiobtn">
+       <%= f.label(:role,"Project Member")%>
+       <%= f.radio_button(:role, "Project Member")%>
+     </div>
+      
+      
+  </div>
+     
+  <div class="group">
+      <%= f.text_field(:username)%>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <%= f.label(:username)%>
+  </div>
+
+  <div class="group">
+     <%= f.password_field(:password)%>
+     <span class="highlight"></span>
+     <span class="bar"></span> 
+     <%= f.label(:password)%>
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+<div class="notifications bg">
+  <div class="head">
+    <p>Notifications</p>
+  </div>
+  
+ <% if @projectactivities.present? %>
+   <%@projectactivities.each do |projectactivity| %>
+   <div class="notification">
+     <% projectname = Project.find(projectactivity.project_id)%>
+     <div class="pdet">You have been Added to Project:<span><%= projectname.project_name%></span> </div>
+  	 <div class="pdet">You have been assigned the following Task</div>
+  	 <div class="pdet">Task Name :<span><%=projectactivity.task %></span> </div>
+     <div class="linkz">
+        <%=link_to("MORE DETAILS",{:action=>'show',:projectactivity_id=>projectactivity.id})%>
+     </div>
+  	 
+   </div>
+   <%end%>
+ <%else%>
+   <div class="notification">
+     <p>No activities assigned yet</p>
+   </div>
+ <%end%>
+</div>

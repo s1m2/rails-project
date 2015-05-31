@@ -1,0 +1,63 @@
+<%= link_to "Back to Projects",:action=>'index' %>
+<div class="pdetails bg">
+  <div class="head">
+ 	 <p>Project Name :<span><%=@project.project_name %></span></p>
+ </div>
+ <div class="content">
+	 <div class="pcontents">
+	 	 <p>Proposed Start Date</p>
+	 	 <div><%=@project.start_date %></div>
+	 </div>
+	 <div class="pcontents">
+	 	 <p>Project End Date</p>
+	 	 <div><%=@project.end_date %></div>
+	 </div>
+	 <div class="pcontents">
+	 	 <p>Project Description</p>
+	 	 <div><%=@project.description %></div>
+	 </div>
+ </div>
+  <div class="link">
+  	  <%= link_to "ASSIGN TASKS",{:controller=>'project_activities/new',:project_id=>@project.id} %>
+  </div>
+  
+</div>
+
+<div class="pactivities bg">
+   <div class="head">
+ 	 <p>Project Activity Details</p>
+ </div>
+ <div class="content">
+   <% if @projectactivities.present? %>
+	  <% @projectactivities.each do |projectactvity| %>
+	   <div class="pactivity">
+	      <div class="pcontents">
+	         <p>Task Name</p>
+	         <div><%=projectactvity.task %></div>
+	      </div>
+
+	   	  <div class="pcontents">
+	   	  	 <p>Activity</p>
+	   	  	 <div><%=projectactvity.activity %></div>
+	   	  </div>
+	   	  <div class="pcontents">
+	   	  	 <p>Assignee</p>
+	   	  	 <% assignee = User.find(projectactvity.assignee_id)%>
+	   	  	 <div><%=assignee.first_name%> <%= assignee.lastname%></div>
+	   	  </div>
+	   	  
+	   	  <div class="linkz">
+	   	  	 <%=link_to "EDIT",{:controller=>'project_activities/edit',:projectactivity_id =>projectactvity.id,:project_id=>@project.id} %>
+	   	     <%=link_to "DELETE",{:controller=>'project_activities/delete',:projectactivity_id =>projectactvity.id,:project_id=>@project.id} %>
+	   	  </div>
+	   	  
+	  </div>
+      <%end %>
+	   <% else %>
+	     <p> There are no new tasks in this project </p>
+	     <%= link_to "Start Assigning Tasks",{:controller=>'project_activities/new',:project_id=>@project.id} %>
+	<%end%>
+ 	
+ </div>
+    
+</div>

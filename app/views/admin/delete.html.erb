@@ -1,0 +1,11 @@
+<div class="delete bg">
+    <p>Are You Sure You Want to delete?</p>
+    <div class="dname">
+    	<%="#{@user.first_name} #{@user.lastname} From The System" %>
+    </div>
+    <div class="linkz">
+        <%=link_to("CANCEL",{:action=>'users'}) %>
+    	<%=link_to("DELETE",{:action=>'destroy',:id=>@user.id}) %>
+    </div>
+    
+</div>

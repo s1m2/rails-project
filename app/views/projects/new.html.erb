@@ -1,0 +1,16 @@
+<div class="createproject bg">
+ 
+ <div class="header-form">
+ 	 <p>Create New Project</p>
+ </div>
+
+   <%= form_for(:project, :url => {:action =>'create'}) do |f| %>
+
+       <%= render(:partial => 'form', :locals => {:f => f}) %>
+
+       <div class="button buttonBlue">
+         <%= submit_tag("Create",:class=>'button') %>
+       </div>
+
+   <% end %>
+</div>

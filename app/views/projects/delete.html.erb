@@ -1,0 +1,11 @@
+<div class="delete bg">
+    <p>Are You Sure You Want to delete?</p>
+    <div class="dname">
+    	<%=@project.project_name%>
+    </div>
+    <div class="linkz">
+        <%=link_to("CANCEL",{:action=>'index'}) %>
+    	<%=link_to("DELETE",{:action=>'destroy',:id=>@project.id}) %>
+    </div>
+    
+</div>

@@ -1,0 +1,22 @@
+<%= error_messages_for(@project_activity) %>
+<div id="holder" class="clearfix">
+ <div id="taskname" class="box side">
+   <div class="pcontents">
+     <p>Task Name</p>
+     <div><%=@projectactivity.task %></div>
+   </div>
+ </div>
+ <div id="taskactivity" class="box side">
+   <div class="pcontents">
+     <p>Activity</p>
+     <div><%=@projectactivity.activity %></div>
+   </div>
+ </div>
+ <div id="status" class="box side clearfix">
+   <div class="pcontents">
+     <p><%= f.label :completed , "Check if task is completed" %></p>
+     <div><%= f.check_box :completed,{:checked=>1} %></div>
+   </div>
+ </div>
+   	 
+</div>

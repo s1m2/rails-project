@@ -1,0 +1,21 @@
+<%= error_messages_for(@project_activity) %>
+<div class="form">
+   <div class="group">
+      <%= f.text_field :task %>
+   	  <span class="highlight"></span>
+      <span class="bar"></span>
+      <%= f.label :task, "Task Name" %>
+   </div>
+
+   <div class="group">
+      <%= f.text_area :activity %>
+   	  <span class="highlight"></span>
+      <span class="bar"></span>
+      <%= f.label :activity, "Activity Involved" %>
+   </div>
+
+   <div class="group">
+   	  <%= f.select(:assignee_id,@users.map { |e| [e.username, e.id] })%>
+   	  <%= f.label :assignee_id, "Select user to Assign Task" %>
+   </div>
+</div>

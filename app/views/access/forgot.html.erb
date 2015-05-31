@@ -1,0 +1,15 @@
+<div id = "index">
+  <%= form_tag(:action =>'password_reset') do %>
+     <div class="group">
+     	 <%= text_field_tag(:email) %>
+     	 <span class="highlight"></span>
+	     <span class="bar"></span>
+	     <%= label_tag(:email,"Kindly Enter Your email")%>
+     </div>
+     
+     <div class="button buttonBlue">
+		 <%= submit_tag("Submit",:class=>'button') %>
+	 </div>
+        
+   <% end %>
+</div>

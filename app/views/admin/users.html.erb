@@ -1,0 +1,37 @@
+<div id="project" class="bg">
+   <div id="pname">MEMBERS</div>
+</div>
+<div class="container">
+	
+
+	<div class="users">
+	  <%@users.each do |user| %>
+	  <div id="viewmem"class="project-details bg side">
+	  	 <div class="pcontents" id="nme">
+	  	     <p>Name</p> 
+	  	     <div><%=user.first_name%>  <%=user.lastname %></div>
+	  	 </div>
+	  	 <div class="pcontents" id="emai">
+	  	     <p>Email</p> 
+	  	     <div><%=user.email %></div>
+	  	 </div>
+	  	 <div class="pcontents" id="dept">
+	  	     <p>Department</p> 
+	  	     <div><%=user.department %></div>
+	  	 </div>
+	  	 <div class="pcontents" id="rle">
+	  	     <p>Role</p> 
+	  	     <div><%=user.role %></div>
+	  	 </div>
+	  	 <div class="links">
+                 <div id="link1" class="side">
+                     <%= link_to("Delete",{:action=>'destroy',:id=>user.id})%> 
+                 </div>
+
+                                
+             </div>
+	  </div>
+	  <%end%>
+
+	</div>
+</div>

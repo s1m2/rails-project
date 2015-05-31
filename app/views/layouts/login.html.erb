@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Workflo | Login</title>
+		<%= stylesheet_link_tag('application', :media =>'all') %>
+		<%= javascript_include_tag "application" %>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500|Roboto+Condensed:400,700|Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	</head>
+	<body>
+	  <header>
+	     <div class="container16">
+	         <div class="column16">
+	             <div id="logo">
+	     	          <h1>Welcome to Workflo</h1>
+	             </div>
+	          </div>
+	     </div>
+	  </header>
+
+	  <div id="intro">
+	  	 <p>Your Project Management Assistant</p>
+	  </div>
+
+	  <section>
+	    <div class="flashnotice">
+	    	<% if !flash[:notice].blank? %>
+		   <div class="notice">
+		     <%= flash[:notice] %>
+		   </div>
+		<%end %>
+	    </div>
+      
+
+	     <div class="container12">
+	         <div class="column12">
+		           <div id="form">
+			  	     <div id="form-header">
+			  	         <h2><%=@formtitle %></h2>
+			  	     </div>
+			  	     
+
+			  	     <div id="form-body">
+		
+			  	     	 <%= yield %>
+
+		  	         </div>
+		  	      </div>
+		  	  </div>
+	      </div>	
+	  </section>
+  </body>
+</html>

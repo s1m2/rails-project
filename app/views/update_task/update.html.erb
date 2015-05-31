@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="pactivities bg">
+     <div class="head">
+         <% @project = Project.find(@projectactivity.project_id)%>
+ 	     <p>Project Name: <span><%=@project.project_name %></span></p>
+     </div>
+     <%=form_for(:project_activity,:url=>{:action=>'save',:projectactivity_id=>@projectactivity.id}) do |f| %>
+	      <%=render(:partial=>'form',:locals=>{:f=>f}) %>
+	      <div id="updatebtn">
+	      	 <%= submit_tag("UPDATE",:class=>'btn')%>
+	      </div>
+	      
+     <% end %>
+  	
+  </div>
+   	
+</div>

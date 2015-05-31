@@ -1,0 +1,79 @@
+<div id="project" class="bg clearfix">
+ <% conversation = Conversation.find(params[:conversation_id]) %>
+ 
+ <% user = User.find(conversation.recipient_id) %>
+ <div class="user-img">
+   <div class="img"></div>
+   <div class="usrname"><%= user.first_name %> <%= user.lastname %></div>
+ </div>
+
+ <div class="backlink">
+   <%= link_to "BACK TO INBOX",:controller=>'conversations/index'  %>
+ </div>
+ 
+</div>
+
+<div class="container">
+ <div id="index" class="msgco bg">
+   <%= form_for(:message,:url=>{:action=>'create',:conversation_id => @conversation.id}) do |f|%>
+     <div class="group">
+       <%= f.text_area(:body)%>
+       <span class="highlight"></span>
+       <span class="bar"></span>
+       <%= f.label(:body) %>
+     </div>
+     <div class="button buttonBlue">
+       <%= submit_tag("Send",:class=>'button') %>
+     </div>
+   <%end%>
+ </div>
+
+ <div class="chats bg">
+   <div class="head">
+      <p>Your Chats</p>
+   </div>
+
+   <% @messages.each do |message| %>
+     <% if message.body %> 
+       <% user = User.find(message.user_id) %>
+       <ol class="discussion">
+       <% if user.id != current_user.id %>
+       
+         <li class="other">
+           <div class="avatar">
+             <img src="http://shackmanlab.org/wp-content/uploads/2013/07/person-placeholder.jpg" />
+           </div>
+           <div class="message">
+             <p><%= message.body %></p>
+             <time><%= user.first_name %><%=" "%><%= message.created_at.strftime("%m/%d/%y at %H:%M %p") %></time>
+             <%= status_tag(message.read) %>
+           </div>           
+         </li>
+
+         <%elsif user.id == current_user.id%>
+         <li class="self">
+           <div class="avatar">
+             <img src="http://shackmanlab.org/wp-content/uploads/2013/07/person-placeholder.jpg" />
+           </div>
+           <div class="message">
+             <p><%= message.body %></p>
+             <time><%= user.first_name %><%= message.created_at.strftime("%m/%d/%y at %H:%M %p") %></time>
+             <%= status_tag(message.read) %>
+           </div>          
+         </li>
+       </ol>
+                       
+       <%end%>
+     <% end %>
+   <% end %>
+ </div>
+</div>    
+               
+   
+  
+
+  
+
+
+
+

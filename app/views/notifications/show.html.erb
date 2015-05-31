@@ -1,0 +1,45 @@
+<div class="notifications bg progress-pg">
+  <%=link_to "BACK TO NOTIFICATIONS",:action=>'index' %>
+</div>
+
+<div class="notifications bg">
+  <div class="activity">
+      <% projectname = Project.find(@projectactvity.project_id)%>
+      <div class="pcontents">
+          <p>Project Name:</p> 
+          <div><%= projectname.project_name%></div>
+      </div>
+      <div class="pcontents">
+         <p>Project Description:</p> 
+         <div><%= projectname.description%></div>
+      </div>
+      <div class="head">
+         <p>You Have been assigned the following task</p>
+     </div>
+     <div class="pcontents">
+         <p>Task:</p> 
+         <div><%=@projectactvity.task %></div>
+     </div>
+     <div class="pcontents">
+         <p>Activity Involved:</p> 
+         <div><%=@projectactvity.activity %></div>
+     </div>
+     <% asignor = User.find(@projectactvity.asignor_id) %>
+     <div class="pcontents">
+         <p>Asignor:</p> 
+         <div><%=asignor.first_name%> <%=asignor.lastname%></div>
+     </div>
+     <div class="pcontents">
+         <p>Asignor Role:</p> 
+         <div><%=asignor.role %></div>
+     </div>
+     <div class="pcontents">
+         <p>Date Assigned:</p> 
+         <div><%= @projectactvity.created_at.strftime("%m/%d/%y")%></div>
+     </div>
+  </div>
+  <div class="linkz" id="not">
+     <%=link_to("UPDATE TASK",{:controller=>'update_task/update',:projectactivity_id=>@projectactvity.id})%>
+  </div>
+    
+</div>

@@ -1,0 +1,15 @@
+<div class="createproject bg">
+    <div class="header-form">
+ 	 <p>Edit Project Details</p>
+    </div>
+    <%= form_for(:project, :url=>{:action=>'update',:project_id=>@project.id}) do |f| %>
+
+        <%= render(:partial =>'form', :locals=>{:f=>f}) %>
+
+        <div class="button buttonBlue">
+          <%= submit_tag("Update",:class=>'button') %>
+        </div>
+
+    <% end %>
+
+</div>

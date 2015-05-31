@@ -1,0 +1,37 @@
+<div class="container">
+ <div class="members bg side">
+     <p>Members</p>
+     <% @users.each do |user| %>
+	 <div class="user pad">
+		 <div class="name"><%=user.first_name%> <%= user.lastname%></div>
+	     <div class="department"><%=user.department%></div>
+	 </div>
+	 <%end%>		
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="userdetails bg side"> 
+		 <%user = User.find(current_user.id) %>
+		 <p>My Details</p>
+		 <div class="user-detail">Name: <span><%= user.first_name %> <%= user.lastname %></span></div>
+		 <div class="user-detail">Email: <span><%= user.email%></span></div>	 
+		 <div class="user-detail">Username: <span><%= user.username %></span> </div>
+	</div>
+
+
+	<div class="overview bg side">
+		 <p>Overview</p>
+		 <div class="det1">No of Messages Sent:<span><%= @conversations=Conversation.where("sender_id=?",current_user.id).count%></span></div>
+		 <div class="det1">No of Users in the system:<span><%= @users=User.count - 1%></span></div>
+	</div>
+
+	<div class="day bg side">
+		<div id="time"><%=Time.now.strftime( "%I:%M %p") %></div>
+		<div id="day"><%=DateTime.now.strftime( "%B %e, %Y")%></div>
+	</div>
+		
+</div>
+
+	
