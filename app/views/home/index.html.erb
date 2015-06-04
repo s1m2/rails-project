@@ -1,15 +1,26 @@
 <div id="project" class="bg">
-   <div id="name">Current Project: <%=@project.project_name%></div>
+  <% if @project.present?%>
+     <div id="name">Current Project: <%=@project.project_name%></div>
+  <%else%>
+     <div id="name">You Do Not Have Any New Projects Yet <%=link_to "Create Project",:controller=>'projects/new' %></div>
+  <%end%>
+
 </div>
 <div class="container">
  <div class="members bg side">
      <p>Members</p>
-     <% @users.each do |user| %>
-	 <div class="user pad">
-		 <div class="name"><%=user.first_name%> <%= user.lastname%></div>
-	     <div class="department"><%=user.department%></div>
-	 </div>
-	 <%end%>		
+     <% if @users.present? %>
+	     <% @users.each do |user| %>
+		 <div class="user pad">
+			 <div class="name"><%=user.first_name%> <%= user.lastname%></div>
+		     <div class="department"><%=user.department%></div>
+		 </div>
+		 <%end%>
+     <%else%>
+         <div class="user pad">
+			 <div class="name">There are no users in the system</div>
+		 </div>	
+     <%end%>	
   </div>
 
 	<div class="activities bg side">
@@ -48,12 +59,16 @@
 
 	<div class="lastproject bg side">
 	  <p>Current Project Overview</p>
-	  <div class="det">Project Name: <span><%=@project.project_name%></span></div>
-	  <div class="det">Start Date: <span><%=@project.start_date %></span></div>
-	  <div class="det">End Date: <span><%=@project.end_date %></span></div>
-	  <div class="det">Activities: <span><%=@project.project_activities.where("asignor_id=?",current_user.id).count %></span></div>
-	  <div class="det">No of Activities Completed:<span><%=@project.project_activities.where("completed=?",1).count %></span></div>
-	  <div class="det">No of Users Involved:<span><%=@project.project_activities.where("assignee_id").count %></span></div>
+	  <% if @project.present? %>
+		  <div class="det">Project Name: <span><%=@project.project_name%></span></div>
+		  <div class="det">Start Date: <span><%=@project.start_date %></span></div>
+		  <div class="det">End Date: <span><%=@project.end_date %></span></div>
+		  <div class="det">Activities: <span><%=@project.project_activities.where("asignor_id=?",current_user.id).count %></span></div>
+		  <div class="det">No of Activities Completed:<span><%=@project.project_activities.where("completed=?",1).count %></span></div>
+		  <div class="det">No of Users Involved:<span><%=@project.project_activities.where("assignee_id").count %></span></div>
+	  <%else%>
+	     <div class="det">You Have No Project</div>
+	  <%end%>
 	</div>
 
 	<div class="overview bg side">

@@ -23,15 +23,17 @@
            <div class="lastmessage side">
              <div class="re"><%= link_to(recipient.first_name, :controller=>'messages/index',:conversation_id=>conversation.id) %></div>
              <% msg = Message.where(:conversation_id=>conversation.id).last%>
-             <div class="msg"><%= msg.body%></div>
-             <div class="time"><%= msg.updated_at.strftime("%H:%M %p") %></div>
+             <% if msg.present? %>
+               <div class="msg"><%= msg.body%></div>
+               <div class="time"><%= msg.updated_at.strftime("%H:%M %p") %></div>
+             <%end%>
            </div>   
          </div>   
        <% end %>
      <% end %>
    <%else%>
      <div class="messages">
-       <%="<p>You do not have</p>"%>
+       <%="You do not have"%>
      </div>
    <%end%>
  </div>

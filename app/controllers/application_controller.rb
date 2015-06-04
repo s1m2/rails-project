@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  rescue_from ActionController::RoutingError, :with => :render_not_found
   protect_from_forgery with: :exception
 
   protect_from_forgery with: :null_sessions
@@ -23,7 +24,6 @@ class ApplicationController < ActionController::Base
       "admin"
     end
   end
-  
 
   def current_user
     User.find_by(id: session[:user_id])
@@ -36,7 +36,11 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user, :authenticate_user
-
+  
+  private
+  def render_not_found
+   render "#{Rails.root}/public/404.html", :status => 404
+  end
 
   
 end

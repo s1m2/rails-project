@@ -9,8 +9,10 @@ class MessagesController < ApplicationController
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.last
-    if @message.user_id != current_user.id
-      @message.update_attributes(:read=>'1',:created_at=>Time.now)
+    if @message.present?
+      if @message.user_id != current_user.id
+         @message.update_attributes(:read=>'1',:created_at=>Time.now)
+      end
     end
     
   end
