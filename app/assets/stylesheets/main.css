@@ -495,7 +495,9 @@ a{
 #link2 a{
   margin-left: 8px;
 }
-
+.project-details{
+  margin-bottom: 20px;
+}
 .project-details:nth-of-type(1),
 .project-details:nth-of-type(2) {
   margin-right: 10px;

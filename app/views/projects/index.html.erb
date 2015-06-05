@@ -1,3 +1,11 @@
+<div class="flashnotice">
+  <% if !flash[:notice].blank? %>
+     <div class="notice">
+         <%= flash[:notice] %>
+      </div>
+  <%end %>
+</div>
+      
 <div id="project" class="bg">
    <div id="pname">PROJECTS</div>
    <div id="link"><%= link_to("CREATE NEW PROJECT",{:action=>'new'}) %></div>

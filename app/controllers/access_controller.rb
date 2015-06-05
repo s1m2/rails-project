@@ -87,14 +87,4 @@ class AccessController < ApplicationController
   def user_params
   	 params.require(:user).permit(:first_name,:lastname,:email,:department,:role,:username,:password)
   end
-
-  def generate_random_password
-   length = 10
-   chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ23456789'
-   password = ''
-   length.times { |i| password << chars[rand(chars.length)] }
-   password
-  end
-
-  
 end

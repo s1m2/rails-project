@@ -28,6 +28,14 @@ class ApplicationController < ActionController::Base
   def current_user
     User.find_by(id: session[:user_id])
   end
+  
+  def generate_random_password
+   length = 10
+   chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ23456789'
+   password = ''
+   length.times { |i| password << chars[rand(chars.length)] }
+   password
+  end
 
   def authenticate_user
     if !current_user
